@@ -26,7 +26,7 @@ def neighbors(row, col, image_width, image_height):
     return neighborhood
 
 def search(label_image, label_num, row, col):
-    label_image[row][col] = 255 / label_num
+    label_image[row][col] = label_num
     neighbor_set = neighbors(row, col, label_image.shape[1], label_image.shape[0])
     for neighbor_row, neighbor_col in neighbor_set:
         if label_image[neighbor_row][neighbor_col] == -1:
@@ -46,17 +46,16 @@ def recursive_connected_components(image):
     label_image, num_objects = find_component(label_image, label)
     return label_image, num_objects
 
+
 sys.setrecursionlimit(50000)
 np.set_printoptions(threshold=sys.maxsize)
-# image = otsu.create_otsu_binary("SingleSquare.png")
-# image = otsu.create_otsu_binary("TestSquaresWithHoles.jpg")
-image = otsu.create_otsu_binary("three_shapes.png")
+if __name__ == '__main__':
+    print("label_objects_binary_image file")
 
-image = np.asarray(image)
+    # image = otsu.create_otsu_binary("SingleSquare.png", as_array=True)
+    # image = otsu.create_otsu_binary("TestSquaresWithHoles.jpg", as_array=True)
+    image = otsu.create_otsu_binary("three_shapes.png", as_array=True)
 
-label_image, num_objects = recursive_connected_components(image)
-
-# Image.fromarray(label_image).show()
-print("Num objects", num_objects)
+    label_image, num_objects = recursive_connected_components(image)
 
 

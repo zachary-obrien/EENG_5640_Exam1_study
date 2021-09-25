@@ -34,7 +34,7 @@ def otsu(grey):
             final_thresh = t
             final_value = value
     final_img = grey.copy()
-    final_img[grey > final_thresh] = 255
+    final_img[grey > final_thresh] = 1
     final_img[grey < final_thresh] = 0
     return final_img
 

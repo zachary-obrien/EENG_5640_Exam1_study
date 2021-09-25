@@ -38,11 +38,16 @@ def otsu(grey):
     final_img[grey < final_thresh] = 0
     return final_img
 
-def create_otsu_binary(image_name, greyscale=False):
-    grey_image = load_image(image_name, greyscale)
-    final_image = Image.fromarray(otsu(grey_image))
+
+def create_otsu_binary(image_name, greyscale=False, as_array=False):
+    final_image = otsu(load_image(image_name, greyscale))
+    if not as_array:
+        final_image = Image.fromarray(final_image)
     return final_image
 
-image = create_otsu_binary("EDTem.jpg")
-#image.show()
+
+if __name__ == '__main__':
+    print("Otsu file")
+    image = create_otsu_binary("EDTem.jpg")
+    image.show()
 

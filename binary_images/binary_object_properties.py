@@ -75,7 +75,8 @@ def find_circularity(perimeter_points, centroid):
 
 
 if __name__ == '__main__':
-    print("binary_object_properties file")
+    print("binary_object_properties file"
+          ".")
     binary_image = create_otsu_binary("three_shapes.png", as_array=True)
     labeled_image, num_objects = recursive_connected_components(binary_image)
     perimeter_list = find_perimeter(labeled_image)

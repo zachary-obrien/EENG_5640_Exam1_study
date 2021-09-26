@@ -2,8 +2,8 @@ from PIL import Image
 import numpy as np
 import otsu
 
-external_patterns = [[0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0], [1, 0, 0, 0]]
-internal_patterns = [[1, 1, 1, 0], [1, 1, 0, 1], [1, 0, 1, 1], [0, 1, 1, 1]]
+internal_patterns = [[0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0], [1, 0, 0, 0]]
+external_patterns = [[1, 1, 1, 0], [1, 1, 0, 1], [1, 0, 1, 1], [0, 1, 1, 1]]
 
 #Only takes color (greyscale=False) and greyscale(greyscale=True) images
 def load_image(img_filename, greyscale=False):
@@ -11,7 +11,7 @@ def load_image(img_filename, greyscale=False):
     image.show()
     return np.asarray(image) / 255
 
-def num_holes(image):
+def num_corners(image):
     row_size = image.shape[0]
     col_size = image.shape[1]
     external_corners = 0
@@ -36,9 +36,10 @@ def num_holes(image):
     print("internal corners", internal_corners)
     return int((external_corners - internal_corners) / 4)
 
-def find_holes(image_name):
+def count_objects(image_name):
     image = load_image(image_name)
-    return num_holes(image)
+    return num_corners(image)
 
-# print("found", find_holes("TestSquaresWithHoles.jpg"), "holes")
-print("found", find_holes("singleSquare.png"), "holes")
+# print("found", count_objects("TestSquaresWithHoles.jpg"), "object")
+# print("found", count_objects("singleSquare.png"), "object")
+print("found", count_objects("single_square_full.png"), "object")

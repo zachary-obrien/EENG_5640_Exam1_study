@@ -41,7 +41,7 @@ def otsu(grey):
 def create_otsu_binary(image_name, greyscale=False, as_array=False):
     final_image = otsu(load_image(image_name, greyscale))
     if not as_array:
-        final_image = Image.fromarray(final_image * 255)
+        final_image = Image.fromarray(final_image)
     return final_image
 
 

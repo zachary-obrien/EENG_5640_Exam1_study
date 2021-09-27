@@ -1,10 +1,9 @@
 import numpy as np
-from PIL import Image
 
 
 def buffer(image, mask, value=0):
-    buffer_width = mask.shape[1] - 2
-    buffer_height = mask.shape[0] - 2
+    buffer_width = int((mask.shape[1] - 1) / 2)
+    buffer_height = int((mask.shape[0] - 1) / 2)
 
     height_array = np.full(shape=(image.shape[0], buffer_height), fill_value=value)
     # add to top and bottom
@@ -56,23 +55,24 @@ def opening(image, kernal_size):
     return closed_image
 
 
+if __name__ == '__main__':
 
-test_matrix = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
-                        [1, 1, 1, 1, 1, 1, 1, 0],
-                        [0, 0, 0, 1, 1, 1, 1, 0],
-                        [0, 0, 0, 1, 1, 1, 1, 0],
-                        [0, 0, 1, 1, 1, 1, 1, 0],
-                        [0, 0, 0, 1, 1, 1, 1, 0],
-                        [0, 0, 1, 1, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0]]).astype(np.float64)
-print("original")
-print(test_matrix)
-print("dilated")
-print(dilation(test_matrix, 3))
-print("eroded")
-print(erosion(test_matrix, 3))
-print("closed")
-print(closing(test_matrix, 3))
-print("opened")
-print(opening(test_matrix, 3))
+    test_matrix = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
+                            [1, 1, 1, 1, 1, 1, 1, 0],
+                            [0, 0, 0, 1, 1, 1, 1, 0],
+                            [0, 0, 0, 1, 1, 1, 1, 0],
+                            [0, 0, 1, 1, 1, 1, 1, 0],
+                            [0, 0, 0, 1, 1, 1, 1, 0],
+                            [0, 0, 1, 1, 0, 0, 0, 0],
+                            [0, 0, 0, 0, 0, 0, 0, 0]]).astype(np.float64)
+    print("original")
+    print(test_matrix)
+    print("dilated")
+    print(dilation(test_matrix, 3))
+    print("eroded")
+    print(erosion(test_matrix, 3))
+    print("closed")
+    print(closing(test_matrix, 3))
+    print("opened")
+    print(opening(test_matrix, 3))
 

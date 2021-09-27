@@ -1,6 +1,5 @@
 import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
 
 def load_image(img_filename, greyscale=True):
     image = Image.open(img_filename)

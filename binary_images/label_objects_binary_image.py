@@ -1,6 +1,5 @@
 import otsu
 import numpy as np
-from PIL import Image
 import sys
 
 def neighbors(row, col, image_width, image_height):
@@ -47,10 +46,11 @@ def recursive_connected_components(image):
     return label_image, num_objects
 
 
-sys.setrecursionlimit(50000)
-np.set_printoptions(threshold=sys.maxsize)
 if __name__ == '__main__':
     print("label_objects_binary_image file")
+
+    sys.setrecursionlimit(50000)
+    np.set_printoptions(threshold=sys.maxsize)
 
     # image = otsu.create_otsu_binary("SingleSquare.png", as_array=True)
     # image = otsu.create_otsu_binary("TestSquaresWithHoles.jpg", as_array=True)

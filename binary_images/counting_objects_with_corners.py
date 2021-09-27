@@ -5,11 +5,13 @@ import otsu
 internal_patterns = [[0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0], [1, 0, 0, 0]]
 external_patterns = [[1, 1, 1, 0], [1, 1, 0, 1], [1, 0, 1, 1], [0, 1, 1, 1]]
 
-#Only takes color (greyscale=False) and greyscale(greyscale=True) images
+
+# Only takes color (greyscale=False) and greyscale(greyscale=True) images
 def load_image(img_filename, greyscale=False):
     image = otsu.create_otsu_binary(img_filename, greyscale)
     image.show()
     return np.asarray(image) / 255
+
 
 def num_corners(image):
     row_size = image.shape[0]
@@ -36,10 +38,13 @@ def num_corners(image):
     print("internal corners", internal_corners)
     return int((external_corners - internal_corners) / 4)
 
+
 def count_objects(image_name):
     image = load_image(image_name)
     return num_corners(image)
 
-# print("found", count_objects("TestSquaresWithHoles.jpg"), "object")
-# print("found", count_objects("singleSquare.png"), "object")
-print("found", count_objects("single_square_full.png"), "object")
+
+if __name__ == '__main__':
+    # print("found", count_objects("TestSquaresWithHoles.jpg"), "object")
+    # print("found", count_objects("singleSquare.png"), "object")
+    print("found", count_objects("single_square_full.png"), "object")
